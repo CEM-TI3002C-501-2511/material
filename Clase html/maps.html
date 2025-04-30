@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thales | Mapas</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .nav-link {
+                @apply px-3 py-2 rounded-md text-sm font-medium transition-colors;
+                @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+            }
+            .nav-link-active {
+                @apply bg-gray-900 text-white;
+            }
+        }
+    </style>
+    <!-- Incluimos el CSS de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header con Navegación -->
+    <nav class="bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo y Nombre -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="home.html" class="flex items-center">
+                            <img class="h-8 w-auto mr-2" src="/images/Thales.png" alt="Thales Logo">
+                            <span class="text-white text-xl font-bold">Thales</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Links de Navegación -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="home.html" class="nav-link">Inicio</a>
+                        <a href="about.html" class="nav-link">Acerca del sitio</a>
+                        <a href="dashboard.html" class="nav-link">Dashboard</a>
+                        <a href="maps.html" class="nav-link nav-link-active">Mapas</a>
+                    </div>
+                </div>
+                
+                <!-- Menú móvil (oculto por defecto) -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <span class="sr-only">Abrir menú</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">Mapas de incidentes</h1>
+            <p class="mt-2 text-gray-600">Visualización geoespacial de incidencias y zonas de riesgo</p>
+        </div>
+
+        <!-- Filtros -->
+        <div class="bg-white p-4 rounded-lg shadow mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Visualización</label>
+                    <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option>Mapa de calor</option>
+                        <option>Puntos de incidentes</option>
+                        <option>Zonas de predicción</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de crimen</label>
+                    <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option>Todos los tipos</option>
+                        <option>Robo</option>
+                        <option>Asalto</option>
+                        <option>Homicidio</option>
+                        <option>Fraude</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Período</label>
+                    <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option>Último mes</option>
+                        <option>Últimos 3 meses</option>
+                        <option>Último año</option>
+                        <option>Personalizado</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nivel de predicción</label>
+                    <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option>Alto</option>
+                        <option>Medio</option>
+                        <option>Bajo</option>
+                        <option>Todos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4 flex justify-end">
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+                    Actualizar mapa
+                </button>
+            </div>
+        </div>
+
+        <!-- Mapa principal -->
+        <div class="bg-white p-4 rounded-lg shadow">
+            <div id="map" class="h-96 w-full rounded-md">
+                <!-- Aquí se cargará el mapa con Leaflet -->
+                <div class="w-full h-full bg-gray-200 rounded-md flex items-center justify-center">
+                    <p class="text-gray-500 text-center">
+                        Mapa interactivo de incidentes<br>
+                        <span class="text-sm">(Se mostraría un mapa real con la biblioteca Leaflet)</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leyenda y Estadísticas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-lg font-medium text-gray-900 mb-4">Leyenda</h2>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-red-500 mr-2"></div>
+                        <span>Zona de alto riesgo</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-yellow-500 mr-2"></div>
+                        <span>Zona de riesgo medio</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
+                        <span>Zona de bajo riesgo</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded mr-2 border border-black" style="background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 50%, black 50%, black 75%, transparent 75%, transparent); background-size: 8px 8px;"></div>
+                        <span>Zonas sin datos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-lg font-medium text-gray-900 mb-4">Zonas destacadas</h2>
+                <div class="space-y-3">
+                    <div class="border-l-4 border-red-500 pl-3">
+                        <p class="font-medium">Zona Norte</p>
+                        <p class="text-sm text-gray-600">Mayor concentración de incidentes (35%)</p>
+                    </div>
+                    <div class="border-l-4 border-yellow-500 pl-3">
+                        <p class="font-medium">Zona Centro</p>
+                        <p class="text-sm text-gray-600">Aumento de 15% en el último mes</p>
+                    </div>
+                    <div class="border-l-4 border-green-500 pl-3">
+                        <p class="font-medium">Zona Sur</p>
+                        <p class="text-sm text-gray-600">Reducción de 22% en el último trimestre</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-lg font-medium text-gray-900 mb-4">Métricas de predicción</h2>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm text-gray-600">Precisión del modelo</span>
+                            <span class="text-sm font-medium">85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-indigo-600 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm text-gray-600">Confianza de predicción</span>
+                            <span class="text-sm font-medium">78%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-indigo-600 h-2 rounded-full" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm text-gray-600">Cobertura de datos</span>
+                            <span class="text-sm font-medium">92%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-indigo-600 h-2 rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto py-6 px-4 overflow-hidden sm:px-6 lg:px-8">
+            <div class="mt-4 flex justify-center space-x-6">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2025 Thales. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script para Leaflet (se añade pero no se implementa completamente) -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+</body>
+</html>

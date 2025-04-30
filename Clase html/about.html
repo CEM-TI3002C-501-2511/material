@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thales | Acerca de</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .nav-link {
+                @apply px-3 py-2 rounded-md text-sm font-medium transition-colors;
+                @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+            }
+            .nav-link-active {
+                @apply bg-gray-900 text-white;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header con Navegación -->
+    <nav class="bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo y Nombre -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="home.html" class="flex items-center">
+                            <img class="h-8 w-auto mr-2" src="/images/Thales.png" alt="Thales Logo">
+                            <span class="text-white text-xl font-bold">Thales</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Links de Navegación -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="home.html" class="nav-link">Inicio</a>
+                        <a href="about.html" class="nav-link nav-link-active">Acerca del sitio</a>
+                        <a href="dashboard.html" class="nav-link">Dashboard</a>
+                        <a href="maps.html" class="nav-link">Mapas</a>
+                    </div>
+                </div>
+                
+                <!-- Menú móvil (oculto por defecto) -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <span class="sr-only">Abrir menú</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="px-6 py-8 md:px-10">
+                <h1 class="text-3xl font-bold text-gray-900 mb-6">Acerca del sitio</h1>
+                
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        Thales es una plataforma avanzada de análisis y predicción de crimen que utiliza inteligencia artificial y análisis de datos para ayudar a las autoridades y comunidades a comprender y prevenir la delincuencia.
+                    </p>
+                    
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-6 mb-3">Nuestra misión</h2>
+                    <p class="text-gray-600 mb-4">
+                        Nuestra misión es proporcionar herramientas de análisis predictivo precisas y accesibles que permitan a las autoridades y comunidades tomar decisiones informadas para mejorar la seguridad pública.
+                    </p>
+                    
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-6 mb-3">Tecnologías utilizadas</h2>
+                    <p class="text-gray-600 mb-4">
+                        Utilizamos algoritmos avanzados de aprendizaje automático, análisis de datos a gran escala y visualización geoespacial para proporcionar información precisa y procesable sobre patrones de criminalidad y áreas de riesgo.
+                    </p>
+                    
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-6 mb-3">Nuestro equipo</h2>
+                    <p class="text-gray-600">
+                        Somos un equipo multidisciplinario de científicos de datos, desarrolladores de software, criminólogos y expertos en seguridad pública comprometidos con la creación de comunidades más seguras a través de la tecnología y el análisis de datos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-6 px-4 overflow-hidden sm:px-6 lg:px-8">
+            <div class="mt-4 flex justify-center space-x-6">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2025 Thales. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
