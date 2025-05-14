@@ -1,9 +1,19 @@
-html.Div(
+import dash
+import dash_svg
+from dash import html
+
+dash.register_page(__name__,
+    path="/acerca",
+    title="Acerca del sitio",
+    name="acerca"
+    )
+
+layout = html.Div(
     className="min-h-screen bg-gray-50 flex flex-col",
     children=[
         html.Section(
             className="relative bg-cover bg-center py-24",
-            style={"background-image": "url(images/bg-acerca.jpg)"},
+            style={"background-image": f"url({dash.get_asset_url('images/bg-acerca.jpg')})"},
             children=[
                 html.Div(className="absolute inset-0 bg-indigo-900 opacity-75"),
                 html.Div(
@@ -176,7 +186,7 @@ html.Div(
                                 html.Div(
                                     className="md:w-1/2 bg-cover bg-center h-80 md:h-auto",
                                     style={
-                                        "background-image": "url(images/mission-acerca.jpg)"
+                                        "background-image": f"url({dash.get_asset_url('images/mission-acerca.jpg')})"
                                     },
                                 ),
                                 html.Div(
@@ -250,7 +260,7 @@ html.Div(
                                                 html.Img(
                                                     alt="Alejandro Méndez",
                                                     className="w-full h-full object-cover object-center",
-                                                    src="images/team-alejandro.jpg",
+                                                    src=dash.get_asset_url("images/team-alejandro.jpg"),
                                                 )
                                             ],
                                         ),
@@ -279,7 +289,7 @@ html.Div(
                                                 html.Img(
                                                     alt="Carmen Rodríguez",
                                                     className="w-full h-full object-cover object-center",
-                                                    src="images/team-carmen.jpg",
+                                                    src=f"{dash.get_asset_url('images/team-carmen.jpg')}",
                                                 )
                                             ],
                                         ),
@@ -308,7 +318,7 @@ html.Div(
                                                 html.Img(
                                                     alt="Roberto Vega",
                                                     className="w-full h-full object-cover object-center",
-                                                    src="images/team-roberto.jpg",
+                                                    src=f"{dash.get_asset_url('images/team-roberto.jpg')}",
                                                 )
                                             ],
                                         ),
@@ -787,7 +797,7 @@ html.Div(
                                         html.Img(
                                             alt="Ubicación en mapa",
                                             className="w-full h-full object-cover object-center",
-                                            src="https://maps.googleapis.com/maps/api/staticmap?center=19.432608,-99.133209&zoom=14&size=600x600&markers=color:red%7C19.432608,-99.133209&key=YOUR_API_KEY",
+                                            src=dash.get_asset_url("images/map-location.jpg"),
                                         )
                                     ],
                                 ),

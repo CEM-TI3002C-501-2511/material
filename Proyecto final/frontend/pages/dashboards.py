@@ -1,9 +1,18 @@
-html.Div(
+import dash
+from dash import html
+
+dash.register_page(__name__,
+    path="/dashboards",
+    title="Dashboards Interactivos",
+    name="dashboards"
+    )
+
+layout = html.Div(
     className="min-h-screen bg-gray-50 flex flex-col",
     children=[
         html.Section(
             className="relative bg-cover bg-center py-24",
-            style={"background-image": "url(images/bg-dashboards.jpg)"},
+            style={"background-image": f"url({dash.get_asset_url('images/bg-dashboards.jpg')})"},
             children=[
                 html.Div(className="absolute inset-0 bg-indigo-900 opacity-75"),
                 html.Div(

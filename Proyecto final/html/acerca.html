@@ -7,22 +7,22 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <div class="min-h-screen bg-gray-50 flex flex-col">
+    <div class="flex min-h-screen flex-col bg-gray-50">
         <header class="bg-white shadow-md">
-            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="container mx-auto flex items-center justify-between px-4 py-3">
                 <div class="flex items-center">
                     <a href="index.html" class="flex items-center">
-                        <img src="images/Thales.png" alt="Thales Logo" class="h-12 mr-4">
+                        <img src="images/Thales.png" alt="Thales Logo" class="mr-4 h-12">
                         <span class="text-xl font-bold text-gray-800">Thales</span>
                     </a>
                 </div>
                 <nav>
                     <ul class="flex space-x-6">
-                        <li><a href="index.html" class="text-blue-600 hover:text-blue-800 font-medium">Inicio</a></li>
-                        <li><a href="dashboards.html" class="text-blue-600 hover:text-blue-800 font-medium">Dashboards</a></li>
-                        <li><a href="mapas.html" class="text-blue-600 hover:text-blue-800 font-medium">Mapas</a></li>
-                        <li><a href="predicciones.html" class="text-blue-600 hover:text-blue-800 font-medium">Predicciones</a></li>
-                        <li><a href="acerca.html" class="text-indigo-600 hover:text-indigo-800 font-medium border-b-2 border-indigo-600">Acerca del sitio</a></li>
+                        <li><a href="index.html" class="font-medium text-blue-600 hover:text-blue-800">Inicio</a></li>
+                        <li><a href="dashboards.html" class="font-medium text-blue-600 hover:text-blue-800">Dashboards</a></li>
+                        <li><a href="mapas.html" class="font-medium text-blue-600 hover:text-blue-800">Mapas</a></li>
+                        <li><a href="predicciones.html" class="font-medium text-blue-600 hover:text-blue-800">Predicciones</a></li>
+                        <li><a href="acerca.html" class="border-b-2 border-indigo-600 font-medium text-indigo-600 hover:text-indigo-800">Acerca del sitio</a></li>
                     </ul>
                 </nav>
             </div>
@@ -31,52 +31,52 @@
         <!-- Hero section específico para acerca -->
         <section class="relative bg-cover bg-center py-24" style="background-image: url('images/bg-acerca.jpg');">
             <div class="absolute inset-0 bg-indigo-900 opacity-75"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-3xl mx-auto text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Acerca del Proyecto</h1>
-                    <p class="text-xl text-gray-200 mb-8">Conoce más sobre nuestra misión, visión y el equipo detrás de SafeCityMX.</p>
+            <div class="container relative z-10 mx-auto px-4">
+                <div class="mx-auto max-w-3xl text-center">
+                    <h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">Acerca del Proyecto</h1>
+                    <p class="mb-8 text-xl text-gray-200">Conoce más sobre nuestra misión, visión y el equipo detrás de SafeCityMX.</p>
                 </div>
             </div>
         </section>
         
-        <main class="container mx-auto py-16 px-4 flex-grow">
+        <main class="container mx-auto flex-grow px-4 py-16">
             <!-- Sección: Acerca de la plataforma -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12 p-8">
-                <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Nuestra Plataforma</h2>
+            <div class="mb-12 overflow-hidden rounded-xl bg-white p-8 shadow-lg">
+                <h2 class="mb-6 text-center text-3xl font-bold text-gray-800">Nuestra Plataforma</h2>
                 
-                <div class="prose lg:prose-lg mx-auto text-gray-600 max-w-4xl">
+                <div class="prose lg:prose-lg mx-auto max-w-4xl text-gray-600">
                     <p class="mb-4">La Plataforma Thales es una solución integral para visualización y análisis de datos, diseñada para transformar información compleja en insights accionables. Desarrollada con tecnologías de vanguardia, permite a organizaciones públicas y privadas tomar decisiones basadas en datos confiables y precisos.</p>
                     
                     <p class="mb-8">Lanzada en abril de 2023, nuestra plataforma ha evolucionado rápidamente para convertirse en una herramienta esencial para instituciones que buscan mejorar la seguridad y la calidad de vida en entornos urbanos a través del análisis de datos.</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                        <div class="text-center p-6 bg-blue-50 rounded-lg">
-                            <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <div class="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+                        <div class="rounded-lg bg-blue-50 p-6 text-center">
+                            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Dashboards</h3>
+                            <h3 class="mb-2 text-xl font-semibold text-gray-800">Dashboards</h3>
                             <p class="text-gray-600">Visualizaciones dinámicas que presentan información clave mediante gráficos interactivos y métricas en tiempo real.</p>
                         </div>
                         
-                        <div class="text-center p-6 bg-green-50 rounded-lg">
-                            <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <div class="rounded-lg bg-green-50 p-6 text-center">
+                            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Mapas</h3>
+                            <h3 class="mb-2 text-xl font-semibold text-gray-800">Mapas</h3>
                             <p class="text-gray-600">Visualización geoespacial avanzada que permite identificar patrones y concentraciones de incidentes a nivel geográfico.</p>
                         </div>
                         
-                        <div class="text-center p-6 bg-purple-50 rounded-lg">
-                            <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <div class="rounded-lg bg-purple-50 p-6 text-center">
+                            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Predicciones</h3>
+                            <h3 class="mb-2 text-xl font-semibold text-gray-800">Predicciones</h3>
                             <p class="text-gray-600">Modelos de aprendizaje automático que analizan datos históricos para predecir patrones futuros y probabilidades de incidentes.</p>
                         </div>
                     </div>
@@ -84,12 +84,12 @@
             </div>
             
             <!-- Sección: Nuestra misión -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+            <div class="mb-12 overflow-hidden rounded-xl bg-white shadow-lg">
                 <div class="md:flex">
-                    <div class="md:w-1/2 bg-cover bg-center h-80 md:h-auto" style="background-image: url('images/mission-acerca.jpg');">
+                    <div class="h-80 bg-cover bg-center md:h-auto md:w-1/2" style="background-image: url('images/mission-acerca.jpg');">
                     </div>
-                    <div class="md:w-1/2 p-8">
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Nuestra Misión</h3>
+                    <div class="p-8 md:w-1/2">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-800">Nuestra Misión</h3>
                         <div class="prose text-gray-600">
                             <p>Creemos en el poder de los datos para transformar nuestra sociedad. Nuestra misión es proporcionar herramientas accesibles y potentes que permitan:</p>
                             <ul>
@@ -105,85 +105,85 @@
             </div>
             
             <!-- Sección: El equipo -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12 p-8">
-                <h2 class="text-3xl font-bold mb-8 text-gray-800 text-center">Nuestro Equipo</h2>
+            <div class="mb-12 overflow-hidden rounded-xl bg-white p-8 shadow-lg">
+                <h2 class="mb-8 text-center text-3xl font-bold text-gray-800">Nuestro Equipo</h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                     <!-- Miembro del equipo 1 -->
                     <div class="text-center">
-                        <div class="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
+                        <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
                             <img src="images/team-alejandro.jpg" 
                                  alt="Alejandro Méndez" 
-                                 class="w-full h-full object-cover object-center">
+                                 class="h-full w-full object-cover object-center">
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-1">Alejandro Méndez</h3>
-                        <p class="text-indigo-600 mb-3">Director de Tecnología</p>
-                        <p class="text-gray-600 text-sm">Experto en ciencia de datos y sistemas de inteligencia artificial con más de 15 años de experiencia en el sector.</p>
+                        <h3 class="mb-1 text-xl font-bold text-gray-800">Alejandro Méndez</h3>
+                        <p class="mb-3 text-indigo-600">Director de Tecnología</p>
+                        <p class="text-sm text-gray-600">Experto en ciencia de datos y sistemas de inteligencia artificial con más de 15 años de experiencia en el sector.</p>
                     </div>
                     
                     <!-- Miembro del equipo 2 -->
                     <div class="text-center">
-                        <div class="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
+                        <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
                             <img src="images/team-carmen.jpg" 
                                  alt="Carmen Rodríguez" 
-                                 class="w-full h-full object-cover object-center">
+                                 class="h-full w-full object-cover object-center">
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-1">Carmen Rodríguez</h3>
-                        <p class="text-indigo-600 mb-3">Científica de Datos Principal</p>
-                        <p class="text-gray-600 text-sm">Especialista en modelos predictivos y aprendizaje automático aplicado a seguridad urbana.</p>
+                        <h3 class="mb-1 text-xl font-bold text-gray-800">Carmen Rodríguez</h3>
+                        <p class="mb-3 text-indigo-600">Científica de Datos Principal</p>
+                        <p class="text-sm text-gray-600">Especialista en modelos predictivos y aprendizaje automático aplicado a seguridad urbana.</p>
                     </div>
                     
                     <!-- Miembro del equipo 3 -->
                     <div class="text-center">
-                        <div class="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
+                        <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
                             <img src="images/team-roberto.jpg" 
                                  alt="Roberto Vega" 
-                                 class="w-full h-full object-cover object-center">
+                                 class="h-full w-full object-cover object-center">
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-1">Roberto Vega</h3>
-                        <p class="text-indigo-600 mb-3">Director de Operaciones</p>
-                        <p class="text-gray-600 text-sm">Responsable de la implementación estratégica de soluciones y relaciones con instituciones públicas.</p>
+                        <h3 class="mb-1 text-xl font-bold text-gray-800">Roberto Vega</h3>
+                        <p class="mb-3 text-indigo-600">Director de Operaciones</p>
+                        <p class="text-sm text-gray-600">Responsable de la implementación estratégica de soluciones y relaciones con instituciones públicas.</p>
                     </div>
                 </div>
             </div>
             
             <!-- Sección: Tecnologías -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12 p-8">
-                <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Tecnologías Utilizadas</h2>
+            <div class="mb-12 overflow-hidden rounded-xl bg-white p-8 shadow-lg">
+                <h2 class="mb-6 text-center text-3xl font-bold text-gray-800">Tecnologías Utilizadas</h2>
                 
-                <div class="prose lg:prose-lg mx-auto text-gray-600 max-w-4xl">
+                <div class="prose lg:prose-lg mx-auto max-w-4xl text-gray-600">
                     <p class="mb-6">Nuestra plataforma se basa en tecnologías de vanguardia para ofrecer análisis avanzados y visualizaciones interactivas:</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Front-end</h3>
+                    <div class="mb-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+                        <div class="rounded-lg bg-gray-50 p-6">
+                            <h3 class="mb-3 text-xl font-semibold text-gray-800">Front-end</h3>
                             <ul class="space-y-2">
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     HTML5 y CSS3
                                 </li>
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     JavaScript (ES6+)
                                 </li>
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     Tailwind CSS
                                 </li>
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     Bibliotecas de Visualización (D3.js, Chart.js)
                                 </li>
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     Leaflet para mapas interactivos
@@ -191,35 +191,35 @@
                             </ul>
                         </div>
                         
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Back-end y Análisis</h3>
+                        <div class="rounded-lg bg-gray-50 p-6">
+                            <h3 class="mb-3 text-xl font-semibold text-gray-800">Back-end y Análisis</h3>
                             <ul class="space-y-2">
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     Python para análisis de datos
                                 </li>
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     TensorFlow y scikit-learn 
                                 </li>
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     Bases de datos SQL y NoSQL
                                 </li>
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     APIs RESTful para integración de datos
                                 </li>
                                 <li class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
                                     Computación en la nube (AWS, Azure)
@@ -231,15 +231,15 @@
             </div>
             
             <!-- Sección: Contacto -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="overflow-hidden rounded-xl bg-white shadow-lg">
                 <div class="md:flex">
-                    <div class="md:w-1/2 p-8">
-                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Contáctenos</h3>
-                        <p class="text-gray-600 mb-6">¿Interesado en conocer más sobre nuestra plataforma? ¿Desea programar una demostración personalizada? Estamos aquí para ayudarle a transformar sus datos en insights valiosos.</p>
+                    <div class="p-8 md:w-1/2">
+                        <h3 class="mb-6 text-2xl font-bold text-gray-800">Contáctenos</h3>
+                        <p class="mb-6 text-gray-600">¿Interesado en conocer más sobre nuestra plataforma? ¿Desea programar una demostración personalizada? Estamos aquí para ayudarle a transformar sus datos en insights valiosos.</p>
                         
                         <div class="space-y-4">
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-indigo-100 rounded-full p-2 mr-3">
+                                <div class="mr-3 flex-shrink-0 rounded-full bg-indigo-100 p-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
@@ -251,7 +251,7 @@
                             </div>
                             
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-indigo-100 rounded-full p-2 mr-3">
+                                <div class="mr-3 flex-shrink-0 rounded-full bg-indigo-100 p-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                     </svg>
@@ -263,7 +263,7 @@
                             </div>
                             
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-indigo-100 rounded-full p-2 mr-3">
+                                <div class="mr-3 flex-shrink-0 rounded-full bg-indigo-100 p-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -277,27 +277,27 @@
                         </div>
                     </div>
                     
-                    <div class="md:w-1/2 h-80 md:h-auto" id="map">
+                    <div class="h-80 md:h-auto md:w-1/2" id="map">
                         <!-- Mapa de Google o una imagen estática de mapa como fallback -->
-                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=19.432608,-99.133209&zoom=14&size=600x600&markers=color:red%7C19.432608,-99.133209&key=YOUR_API_KEY" 
+                        <img src="/images/map-location.jpg" 
                              alt="Ubicación en mapa" 
-                             class="w-full h-full object-cover object-center">
+                             class="h-full w-full object-cover object-center">
                     </div>
                 </div>
             </div>
         </main>
         
-        <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <footer class="bg-gray-800 pb-8 pt-12 text-white">
             <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="mb-8 grid grid-cols-1 gap-8 md:grid-cols-2">
                     <!-- Columna 1: Acerca de (ocupa la mitad) -->
                     <div>
-                        <div class="flex items-center mb-4">
-                            <img src="images/Thales.png" alt="Thales Logo" class="h-10 mr-3">
+                        <div class="mb-4 flex items-center">
+                            <img src="images/Thales.png" alt="Thales Logo" class="mr-3 h-10">
                             <span class="text-xl font-bold">Thales</span>
                         </div>
-                        <p class="text-gray-400 text-sm mb-6 pr-6">Plataforma integral de visualización y análisis de datos que transforma información compleja en insights accionables. Nuestra misión es hacer que el análisis de datos sea accesible para todos, permitiendo a las organizaciones tomar decisiones basadas en datos de manera más efectiva y eficiente.</p>
-                        <div class="flex space-x-4 mt-4">
+                        <p class="mb-6 pr-6 text-sm text-gray-400">Plataforma integral de visualización y análisis de datos que transforma información compleja en insights accionables. Nuestra misión es hacer que el análisis de datos sea accesible para todos, permitiendo a las organizaciones tomar decisiones basadas en datos de manera más efectiva y eficiente.</p>
+                        <div class="mt-4 flex space-x-4">
                             <a href="#" class="text-gray-400 hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
@@ -322,22 +322,22 @@
                     </div>
                     
                     <!-- Columna 2: Enlaces rápidos y Contacto (ocupan la otra mitad) -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
                         <!-- Enlaces rápidos -->
                         <div>
-                            <h3 class="text-lg font-semibold mb-4 text-gray-200">Enlaces rápidos</h3>
+                            <h3 class="mb-4 text-lg font-semibold text-gray-200">Enlaces rápidos</h3>
                             <ul class="space-y-2">
-                                <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Inicio</a></li>
-                                <li><a href="dashboards.html" class="text-gray-400 hover:text-white transition-colors">Dashboards</a></li>
-                                <li><a href="mapas.html" class="text-gray-400 hover:text-white transition-colors">Mapas</a></li>
-                                <li><a href="predicciones.html" class="text-gray-400 hover:text-white transition-colors">Predicciones</a></li>
-                                <li><a href="acerca.html" class="text-gray-400 hover:text-white transition-colors">Acerca del sitio</a></li>
+                                <li><a href="index.html" class="text-gray-400 transition-colors hover:text-white">Inicio</a></li>
+                                <li><a href="dashboards.html" class="text-gray-400 transition-colors hover:text-white">Dashboards</a></li>
+                                <li><a href="mapas.html" class="text-gray-400 transition-colors hover:text-white">Mapas</a></li>
+                                <li><a href="predicciones.html" class="text-gray-400 transition-colors hover:text-white">Predicciones</a></li>
+                                <li><a href="acerca.html" class="text-gray-400 transition-colors hover:text-white">Acerca del sitio</a></li>
                             </ul>
                         </div>
                         
                         <!-- Contacto -->
                         <div>
-                            <h3 class="text-lg font-semibold mb-4 text-gray-200">Contacto</h3>
+                            <h3 class="mb-4 text-lg font-semibold text-gray-200">Contacto</h3>
                             <address class="not-italic text-gray-400">
                                 <p class="mb-2">Av. Innovación Digital 123</p>
                                 <p class="mb-2">Ciudad de Datos, TE, México</p>
@@ -349,12 +349,12 @@
                     </div>
                 </div>
                 
-                <div class="pt-8 border-t border-gray-700 text-center">
-                    <p class="text-gray-400 text-sm">&copy; 2025 Thales. Todos los derechos reservados.</p>
-                    <div class="flex justify-center space-x-6 mt-4">
-                        <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Política de privacidad</a>
-                        <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Términos de uso</a>
-                        <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Cookies</a>
+                <div class="border-t border-gray-700 pt-8 text-center">
+                    <p class="text-sm text-gray-400">&copy; 2025 Thales. Todos los derechos reservados.</p>
+                    <div class="mt-4 flex justify-center space-x-6">
+                        <a href="#" class="text-sm text-gray-500 hover:text-gray-300">Política de privacidad</a>
+                        <a href="#" class="text-sm text-gray-500 hover:text-gray-300">Términos de uso</a>
+                        <a href="#" class="text-sm text-gray-500 hover:text-gray-300">Cookies</a>
                     </div>
                 </div>
             </div>

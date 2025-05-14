@@ -1,6 +1,6 @@
 import dash
 import dash_svg
-from dash import Dash, html, dcc
+from dash import Dash, html, dcc, callback, Input, Output
 
 external_stylesheets = []
 external_scripts = [
@@ -25,7 +25,7 @@ header = html.Header(
                     children=[
                         dcc.Link(
                             className="flex items-center",
-                            href="index.html",
+                            href="/",
                             children=[
                                 html.Img(
                                     alt="Thales Logo",
@@ -48,36 +48,40 @@ header = html.Header(
                                 html.Li(
                                     children=[
                                         dcc.Link(
-                                            className="text-blue-600 hover:text-blue-800 font-medium",
+                                            className="text-gray-800 hover:text-blue-800 font-medium",
                                             href="/",
                                             children=["Inicio"],
+                                            id="home-link"
                                         )
                                     ]
                                 ),
                                 html.Li(
                                     children=[
                                         dcc.Link(
-                                            className="text-blue-600 hover:text-blue-800 font-medium",
-                                            href="dashboards",
+                                            className="text-gray-800 hover:text-blue-800 font-medium",
+                                            href="/dashboards",
                                             children=["Dashboards"],
+                                            id="dashboards-link"
                                         )
                                     ]
                                 ),
                                 html.Li(
                                     children=[
                                         dcc.Link(
-                                            className="text-blue-600 hover:text-blue-800 font-medium",
-                                            href="mapas",
+                                            className="text-gray-800 hover:text-blue-800 font-medium",
+                                            href="/mapas",
                                             children=["Mapas"],
+                                            id="mapas-link"
                                         )
                                     ]
                                 ),
                                 html.Li(
                                     children=[
                                         dcc.Link(
-                                            className="text-blue-600 hover:text-blue-800 font-medium",
-                                            href="predicciones",
+                                            className="text-gray-800 hover:text-blue-800 font-medium",
+                                            href="/predicciones",
                                             children=["Predicciones"],
+                                            id="predicciones-link"
                                         )
                                     ]
                                 ),
@@ -85,8 +89,9 @@ header = html.Header(
                                     children=[
                                         dcc.Link(
                                             className="text-indigo-600 hover:text-indigo-800 font-medium border-b-2 border-indigo-600",
-                                            href="acerca",
+                                            href="/acerca",
                                             children=["Acerca del sitio"],
+                                            id="acerca-link"
                                         )
                                     ]
                                 ),
@@ -116,7 +121,7 @@ footer = html.Footer(
                                         html.Img(
                                             alt="Thales Logo",
                                             className="h-10 mr-3",
-                                            src="images/Thales.png",
+                                            src=dash.get_asset_url("images/Thales.png"),
                                         ),
                                         html.Span(
                                             className="text-xl font-bold",
@@ -229,7 +234,7 @@ footer = html.Footer(
                                                     children=[
                                                         dcc.Link(
                                                             className="text-gray-400 hover:text-white transition-colors",
-                                                            href="index.html",
+                                                            href="/",
                                                             children=["Inicio"],
                                                         )
                                                     ]
@@ -238,7 +243,7 @@ footer = html.Footer(
                                                     children=[
                                                         dcc.Link(
                                                             className="text-gray-400 hover:text-white transition-colors",
-                                                            href="dashboards.html",
+                                                            href="/dashboards",
                                                             children=["Dashboards"],
                                                         )
                                                     ]
@@ -247,7 +252,7 @@ footer = html.Footer(
                                                     children=[
                                                         dcc.Link(
                                                             className="text-gray-400 hover:text-white transition-colors",
-                                                            href="mapas.html",
+                                                            href="/mapas",
                                                             children=["Mapas"],
                                                         )
                                                     ]
@@ -256,7 +261,7 @@ footer = html.Footer(
                                                     children=[
                                                         dcc.Link(
                                                             className="text-gray-400 hover:text-white transition-colors",
-                                                            href="predicciones.html",
+                                                            href="/predicciones",
                                                             children=["Predicciones"],
                                                         )
                                                     ]
@@ -265,7 +270,7 @@ footer = html.Footer(
                                                     children=[
                                                         dcc.Link(
                                                             className="text-gray-400 hover:text-white transition-colors",
-                                                            href="acerca.html",
+                                                            href="/acerca",
                                                             children=[
                                                                 "Acerca del sitio"
                                                             ],
@@ -353,11 +358,35 @@ footer = html.Footer(
 
 app.layout = html.Div(
     children= [
+        dcc.Location(id="url"),
         header,
         dash.page_container,
         footer
     ]
 )
+
+@callback(
+    Output("home-link", "className"),
+    Output("dashboards-link", "className"),
+    Output("mapas-link", "className"),
+    Output("predicciones-link", "className"),
+    Output("acerca-link", "className"),
+    Input("url", "pathname")
+)
+def update_active_link(pathname):
+    links = {
+        "/": "home-link",
+        "/dashboards": "dashboards-link",
+        "/mapas": "mapas-link",
+        "/predicciones": "predicciones-link",
+        "/acerca": "acerca-link"
+    }
+
+    return [
+        "text-indigo-600 hover:text-indigo-800 font-medium border-b-2 border-indigo-600" if pathname == link else "text-gray-800 hover:text-blue-800 font-medium"
+        for link in links.keys()
+    ]
+
 
 if __name__ == "__main__":
     app.run(debug=True)

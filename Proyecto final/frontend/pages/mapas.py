@@ -1,9 +1,20 @@
-html.Div(
+import dash
+import dash_svg
+from dash import html
+
+dash.register_page(__name__,
+    path="/mapas",
+    title="Mapas Interactivos",
+    name="mapas"
+    )
+
+
+layout = html.Div(
     className="min-h-screen bg-gray-50 flex flex-col",
     children=[
         html.Section(
             className="relative bg-cover bg-center py-24",
-            style={"background-image": "url(images/bg-mapas.jpg)"},
+            style={"background-image": f"url({dash.get_asset_url('images/bg-mapas.jpg')})"},
             children=[
                 html.Div(className="absolute inset-0 bg-green-900 opacity-75"),
                 html.Div(

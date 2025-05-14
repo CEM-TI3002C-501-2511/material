@@ -1,17 +1,19 @@
 import dash
-from dash import html
+from dash import html, dcc
 
-dash.register_page(__name__,
-                   path="/",
-                   title="Thales",
-                   name="index")
+dash.register_page(
+    __name__,
+    path="/",
+    title="Thales",
+    name="index"
+    )
 
 layout = html.Div(
     className="min-h-screen bg-gray-50 flex flex-col",
     children=[
         html.Section(
             className="relative bg-cover bg-center py-32",
-            style={"background-image": "url(images/bg-index.jpg)"},
+            style={"background-image": f"url({dash.get_asset_url('images/bg-index.jpg')})"},
             children=[
                 html.Div(className="absolute inset-0 bg-black opacity-60"),
                 html.Div(
@@ -48,6 +50,7 @@ layout = html.Div(
                 html.H2(
                     className="text-3xl font-bold text-center mb-16 text-gray-800",
                     children=["Nuestros Servicios"],
+                    id="secciones",
                 ),
                 html.Div(
                     className="bg-white rounded-xl shadow-lg overflow-hidden mb-12 md:flex h-[400px]",
@@ -82,9 +85,9 @@ layout = html.Div(
                                 html.Div(
                                     className="mt-6",
                                     children=[
-                                        html.A(
+                                        dcc.Link(
                                             className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 px-6 rounded-md inline-block font-medium hover:shadow-md transition-all transform hover:-translate-y-0.5",
-                                            href="dashboards.html",
+                                            href="/dashboards",
                                             children=["Explorar Dashboards"],
                                         )
                                     ],
@@ -102,7 +105,7 @@ layout = html.Div(
                                 html.Img(
                                     alt="Mapas Geoespaciales",
                                     className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500",
-                                    src="images/bg-mapas.jpg",
+                                    src=dash.get_asset_url("images/bg-mapas.jpg"),
                                 )
                             ],
                         ),
@@ -126,9 +129,9 @@ layout = html.Div(
                                 html.Div(
                                     className="mt-6",
                                     children=[
-                                        html.A(
+                                        dcc.Link(
                                             className="bg-gradient-to-r from-green-500 to-green-700 text-white py-2 px-6 rounded-md inline-block font-medium hover:shadow-md transition-all transform hover:-translate-y-0.5",
-                                            href="mapas.html",
+                                            href="/mapas",
                                             children=["Ver Mapas"],
                                         )
                                     ],
@@ -146,7 +149,7 @@ layout = html.Div(
                                 html.Img(
                                     alt="Análisis Predictivo",
                                     className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500",
-                                    src="images/bg-predicciones.jpg",
+                                    src=dash.get_asset_url("images/bg-predicciones.jpg"),
                                 )
                             ],
                         ),
@@ -170,9 +173,9 @@ layout = html.Div(
                                 html.Div(
                                     className="mt-6",
                                     children=[
-                                        html.A(
+                                        dcc.Link(
                                             className="bg-gradient-to-r from-amber-500 to-amber-700 text-white py-2 px-6 rounded-md inline-block font-medium hover:shadow-md transition-all transform hover:-translate-y-0.5",
-                                            href="predicciones.html",
+                                            href="/predicciones",
                                             children=["Explorar Predicciones"],
                                         )
                                     ],
@@ -190,7 +193,7 @@ layout = html.Div(
                                 html.Img(
                                     alt="Nuestro Equipo",
                                     className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500",
-                                    src="images/bg-acerca.jpg",
+                                    src=dash.get_asset_url("images/bg-acerca.jpg"),
                                 )
                             ],
                         ),
@@ -214,9 +217,9 @@ layout = html.Div(
                                 html.Div(
                                     className="mt-6",
                                     children=[
-                                        html.A(
+                                        dcc.Link(
                                             className="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 px-6 rounded-md inline-block font-medium hover:shadow-md transition-all transform hover:-translate-y-0.5",
-                                            href="acerca.html",
+                                            href="/acerca",
                                             children=["Más información"],
                                         )
                                     ],

@@ -1,11 +1,22 @@
-html.Div(
+import dash
+import dash_svg
+from datetime import date
+from dash import html, dcc
+
+dash.register_page(__name__,
+    path="/predicciones",
+    title="Predicciones de Seguridad",
+    name="predicciones"
+    )
+
+layout = html.Div(
     children=[
         html.Div(
             className="min-h-screen bg-gray-50 flex flex-col",
             children=[
                 html.Section(
                     className="relative bg-cover bg-center py-24",
-                    style={"background-image": "url(images/bg-predicciones.jpg)"},
+                    style={"background-image": f"url({dash.get_asset_url('images/bg-predicciones.jpg')})"},
                     children=[
                         html.Div(className="absolute inset-0 bg-purple-900 opacity-75"),
                         html.Div(
@@ -86,6 +97,13 @@ html.Div(
                                                                 html.Label(
                                                                     className="block text-sm font-medium text-gray-700 mb-1",
                                                                     children=["Fecha"],
+                                                                ),
+                                                                dcc.DatePickerSingle(
+                                                                    className="w-full py-2",
+                                                                    id="fecha",
+                                                                    date=date.today(),
+                                                                    display_format="YYYY-MM-DD",
+                                                                    with_portal=True
                                                                 )
                                                             ]
                                                         ),
@@ -94,6 +112,18 @@ html.Div(
                                                                 html.Label(
                                                                     className="block text-sm font-medium text-gray-700 mb-1",
                                                                     children=["Hora"],
+                                                                ),
+                                                                dcc.Slider(
+                                                                    id="hora",
+                                                                    min=0,
+                                                                    max=23,
+                                                                    step=1,
+                                                                    value=12,
+                                                                    marks={
+                                                                        i: str(i)
+                                                                        for i in range(24)
+                                                                    },
+                                                                    className="w-full mt-4 px-4 py-2 focus:ring-purple-500 focus:border-purple-500",
                                                                 )
                                                             ]
                                                         ),
@@ -104,6 +134,12 @@ html.Div(
                                                                     children=[
                                                                         "Latitud"
                                                                     ],
+                                                                ),
+                                                                dcc.Input(
+                                                                    type="number",
+                                                                    id="latitud",
+                                                                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500",
+                                                                    placeholder="Ej: 19.4326",
                                                                 )
                                                             ]
                                                         ),
@@ -114,6 +150,12 @@ html.Div(
                                                                     children=[
                                                                         "Longitud"
                                                                     ],
+                                                                ),
+                                                                dcc.Input(
+                                                                    type="number",
+                                                                    id="longitud",
+                                                                    className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500",
+                                                                    placeholder="Ej: -99.1332",
                                                                 )
                                                             ]
                                                         ),
@@ -159,144 +201,41 @@ html.Div(
                                             id="alcaldiaForm",
                                             children=[
                                                 html.Div(
-                                                    className="grid grid-cols-1 md:grid-cols-2 gap-6",
+                                                    className="grid grid-cols-1 md:grid-cols-3 gap-6",
                                                     children=[
                                                         html.Div(
                                                             children=[
                                                                 html.Label(
                                                                     className="block text-sm font-medium text-gray-700 mb-1",
                                                                     children=["Fecha"],
+                                                                ),
+                                                                dcc.DatePickerSingle(
+                                                                    className="w-full py-2",
+                                                                    id="fecha_alcaldia",
+                                                                    date=date.today(),
+                                                                    display_format="YYYY-MM-DD",
+                                                                    with_portal=True
                                                                 )
                                                             ]
                                                         ),
                                                         html.Div(
+                                                            className="col-span-2",
                                                             children=[
                                                                 html.Label(
                                                                     className="block text-sm font-medium text-gray-700 mb-1",
-                                                                    children=["Hora"],
+                                                                    children=["Alcaldía"],
+                                                                ),
+                                                                dcc.Dropdown(
+                                                                    className="w-full rounded-md focus:ring-indigo-500 focus:border-indigo-500",
+                                                                    id="alcaldia_dropdown",
+                                                                    options=[
+                                                                        {"label": "Alcaldía 1", "value": "alcaldia_1"},
+                                                                        {"label": "Alcaldía 2", "value": "alcaldia_2"},
+                                                                        {"label": "Alcaldía 3", "value": "alcaldia_3"},
+                                                                    ],
+                                                                    value="alcaldia_1"
                                                                 )
                                                             ]
-                                                        ),
-                                                        html.Div(
-                                                            className="md:col-span-2",
-                                                            children=[
-                                                                html.Label(
-                                                                    className="block text-sm font-medium text-gray-700 mb-1",
-                                                                    children=[
-                                                                        "Alcaldía"
-                                                                    ],
-                                                                ),
-                                                                html.Select(
-                                                                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500",
-                                                                    id="alcaldia",
-                                                                    name="alcaldia",
-                                                                    required="",
-                                                                    children=[
-                                                                        html.Option(
-                                                                            value="",
-                                                                            children=[
-                                                                                "Selecciona una alcaldía"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="alvaro_obregon",
-                                                                            children=[
-                                                                                "Álvaro Obregón"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="azcapotzalco",
-                                                                            children=[
-                                                                                "Azcapotzalco"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="benito_juarez",
-                                                                            children=[
-                                                                                "Benito Juárez"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="coyoacan",
-                                                                            children=[
-                                                                                "Coyoacán"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="cuajimalpa",
-                                                                            children=[
-                                                                                "Cuajimalpa"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="cuauhtemoc",
-                                                                            children=[
-                                                                                "Cuauhtémoc"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="gustavo_a_madero",
-                                                                            children=[
-                                                                                "Gustavo A. Madero"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="iztacalco",
-                                                                            children=[
-                                                                                "Iztacalco"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="iztapalapa",
-                                                                            children=[
-                                                                                "Iztapalapa"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="magdalena_contreras",
-                                                                            children=[
-                                                                                "La Magdalena Contreras"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="miguel_hidalgo",
-                                                                            children=[
-                                                                                "Miguel Hidalgo"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="milpa_alta",
-                                                                            children=[
-                                                                                "Milpa Alta"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="tlahuac",
-                                                                            children=[
-                                                                                "Tláhuac"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="tlalpan",
-                                                                            children=[
-                                                                                "Tlalpan"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="venustiano_carranza",
-                                                                            children=[
-                                                                                "Venustiano Carranza"
-                                                                            ],
-                                                                        ),
-                                                                        html.Option(
-                                                                            value="xochimilco",
-                                                                            children=[
-                                                                                "Xochimilco"
-                                                                            ],
-                                                                        ),
-                                                                    ],
-                                                                ),
-                                                            ],
                                                         ),
                                                     ],
                                                 ),
