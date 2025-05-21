@@ -1,5 +1,6 @@
 Proyecto final/data/*.csv
 Proyecto final/ml/*.csv
+Proyecto final/backend/*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
