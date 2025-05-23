@@ -7,13 +7,17 @@ import plotly.io as pio
 from datetime import date
 from dash import html, dcc, callback, Output, Input, State
 
-base_url = "http://localhost:8000"
+backend_url = "http://localhost:8000"
 
 def get_alcaldías():
-    response = requests.get(f"{base_url}/alcaldias")
-    if response.status_code == 200:
-        return response.json()
-    else:
+    try:
+        response = requests.get(f"{backend_url}/alcaldias")
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return []
+    except requests.exceptions.RequestException as e:
+        print(f"Error al obtener las alcaldías: {e}")
         return []
 
 dash.register_page(__name__,
@@ -301,7 +305,7 @@ def update_prediccion_coordenadas(n_clicks, latitud, longitud, hora):
                 "longitud": longitud,
                 "hora": hora
             }
-            response = requests.post(f"{base_url}/prediccion_coordenadas", json=json)
+            response = requests.post(f"{backend_url}/prediccion_coordenadas", json=json)
             json_response = response.json()
             bajo_impacto = float(json_response["bajo impacto"]) * 100
             impacto_medio = float(json_response["impacto medio"]) * 100
@@ -656,7 +660,7 @@ def update_prediccion_alcaldia(n_clicks, alcaldia, fecha_alcaldia):
                 "fecha": fecha_alcaldia,
                 "alcaldia": alcaldia
             }
-            response = requests.post(f"{base_url}/prediccion_alcaldia", json=json)
+            response = requests.post(f"{backend_url}/prediccion_alcaldia", json=json)
             json_response = response.json()
             bajo_impacto = json_response["bajo impacto"]
             bajo_impacto["predicciones"] = pd.DataFrame(bajo_impacto["predicciones"])

@@ -1,6 +1,10 @@
 import dash
 import dash_svg
-from dash import Dash, html, dcc, callback, Input, Output
+import requests
+from dash import Dash, html, dcc, callback, Input, Output, State
+from datetime import datetime
+
+backend_url = "http://localhost:8000"
 
 external_stylesheets = []
 external_scripts = [
@@ -12,6 +16,7 @@ app = Dash(__name__,
            external_scripts=external_scripts,
            title="Thales: Predicción de crimen",
            update_title="Cargando sitio...",
+           suppress_callback_exceptions=True,
            use_pages=True)
 
 header = html.Header(
@@ -356,11 +361,155 @@ footer = html.Footer(
     ],
 )
 
+chatbot_button = html.Div(
+            className="fixed bottom-6 right-6 z-50",
+            id="chatbot-button",
+            children=[
+                html.Button(
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg transition-all hover:scale-105",
+                    id="open-chatbot",
+                    children=[
+                        dash_svg.Svg(
+                            className="h-8 w-8",
+                            fill="none",
+                            stroke="currentColor",
+                            viewBox="0 0 24 24",
+                            xmlns="http://www.w3.org/2000/svg",
+                            children=[
+                                dash_svg.Path(
+                                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z",
+                                    strokeLinecap="round",
+                                    strokeLinejoin="round",
+                                    strokeWidth="2",
+                                )
+                            ],
+                        )
+                    ],
+                )
+            ],
+        )
+
+chatbot_window = html.Div(
+            className="fixed bottom-6 right-6 z-50 hidden",
+            id="chatbot-window",
+            children=[
+                html.Div(
+                    className="bg-white rounded-lg shadow-xl w-80 overflow-hidden",
+                    children=[
+                        html.Div(
+                            className="bg-indigo-600 text-white px-4 py-3 flex justify-between items-center",
+                            children=[
+                                html.Div(
+                                    className="flex items-center",
+                                    children=[
+                                        html.Img(
+                                            alt="Thales Logo",
+                                            className="h-6 mr-2",
+                                            src=dash.get_asset_url("images/Thales.png"),
+                                        ),
+                                        html.H3(
+                                            className="font-medium",
+                                            children=["Asistente Thales"],
+                                        ),
+                                    ],
+                                ),
+                                html.Button(
+                                    className="text-white hover:text-gray-200",
+                                    id="close-chatbot",
+                                    children=[
+                                        dash_svg.Svg(
+                                            className="h-5 w-5",
+                                            fill="currentColor",
+                                            viewBox="0 0 20 20",
+                                            xmlns="http://www.w3.org/2000/svg",
+                                            children=[
+                                                dash_svg.Path(
+                                                    clipRule="evenodd",
+                                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+                                                    fillRule="evenodd",
+                                                )
+                                            ],
+                                        )
+                                    ],
+                                ),
+                            ],
+                        ),
+                        dcc.Loading(
+                            id = "chatbot-loading",
+                            children=[
+                                html.Div(
+                                    className="h-80 px-4 py-3 overflow-y-auto bg-gray-50",
+                                    id = "chat-history",
+                                    children=[
+                                        html.Div(
+                                            className="flex mb-3",
+                                            children=[
+                                                html.Div(
+                                                    className="bg-indigo-100 rounded-lg py-2 px-3 max-w-[80%]",
+                                                    children=[
+                                                        html.P(
+                                                            className="text-sm text-gray-800",
+                                                            children=[
+                                                                "¡Hola! Soy el asistente virtual de Thales. ¿En qué puedo ayudarte hoy?"
+                                                            ],
+                                                        ),
+                                                        html.Span(
+                                                            className="text-xs text-gray-500 mt-1 block",
+                                                            children=["11:30 AM"],
+                                                        ),
+                                                    ],
+                                                )
+                                            ],
+                                        ),
+                                    ],
+                                ),
+                            ]
+                            ),
+                        html.Div(
+                            className="border-t border-gray-200 px-4 py-3 bg-white",
+                            children=[
+                                html.Div(
+                                    className="flex items-center",
+                                    children=[
+                                        dcc.Input(
+                                            className="flex-grow px-3 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm",
+                                            type="text",
+                                            placeholder="Escribe un mensaje...",
+                                            id="chat-input",
+                                        ),
+                                        html.Button(
+                                            className="bg-indigo-600 text-white rounded-r-lg px-4 py-2 hover:bg-indigo-700 transition-colors",
+                                            id ="send-message",
+                                            children=[
+                                                dash_svg.Svg(
+                                                    className="h-5 w-5",
+                                                    fill="currentColor",
+                                                    viewBox="0 0 20 20",
+                                                    xmlns="http://www.w3.org/2000/svg",
+                                                    children=[
+                                                        dash_svg.Path(
+                                                            d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                                                        )
+                                                    ],
+                                                )
+                                            ],
+                                        )
+                                    ],
+                                )
+                            ],
+                        ),
+                    ],
+                )
+            ],
+        )
+
 app.layout = html.Div(
     children= [
         dcc.Location(id="url"),
         header,
         dash.page_container,
+        chatbot_button,
+        chatbot_window,
         footer
     ]
 )
@@ -386,7 +535,114 @@ def update_active_link(pathname):
         "text-indigo-600 hover:text-indigo-800 font-medium border-b-2 border-indigo-600" if pathname == link else "text-gray-800 hover:text-blue-800 font-medium"
         for link in links.keys()
     ]
+    
+@callback(
+    Output("chatbot-button", "className", allow_duplicate=True),
+    Output("chatbot-window", "className", allow_duplicate=True),
+    Input("open-chatbot", "n_clicks"),
+    prevent_initial_call=True
+)
+def open_chatbot(n_clicks):
+    if n_clicks:
+        return "fixed bottom-6 right-6 z-50 hidden", "fixed bottom-6 right-6 z-50"
+    return "fixed bottom-6 right-6 z-50", "fixed bottom-6 right-6 z-50 hidden"
 
+@callback(
+    Output("chatbot-button", "className", allow_duplicate=True),
+    Output("chatbot-window", "className", allow_duplicate=True),
+    Input("close-chatbot", "n_clicks"),
+    prevent_initial_call=True
+)
+def close_chatbot(n_clicks):
+    if n_clicks:
+        return "fixed bottom-6 right-6 z-50", "fixed bottom-6 right-6 z-50 hidden"
+    return "fixed bottom-6 right-6 z-50 hidden", "fixed bottom-6 right-6 z-50"
+
+
+@callback(
+    Output("chat-history", "children"),
+    Input("send-message", "n_clicks"),
+    State("chat-input", "value"),
+    State("chat-history", "children"),
+    prevent_initial_call=True
+)
+def send_message(n_clicks, message, chat_history):
+    chat_history = chat_history or []
+    chat_history.append(
+        html.Div(
+            className="flex justify-end mb-3",
+            children=[
+                html.Div(
+                    className="bg-indigo-600 text-white rounded-lg py-2 px-3 max-w-[80%]",
+                    children=[
+                        html.P(
+                            className="text-sm",
+                            children=[
+                                message
+                            ],
+                        ),
+                        html.Span(
+                            className="text-xs text-indigo-200 mt-1 block",
+                            children=[datetime.now().strftime("%I:%M %p")],
+                        ),
+                    ],
+                )
+            ],
+        )
+    )
+    
+    try:
+        json = {"query": message}
+        response = requests.post(f"{backend_url}/chatbot", json=json)
+        response.raise_for_status()
+        reply = response.json().get("respuesta", "Lo siento, no entendí eso.")
+        chat_history.append(
+            html.Div(
+                className="flex mb-3",
+                children=[
+                    html.Div(
+                        className="bg-indigo-100 rounded-lg py-2 px-3 max-w-[80%]",
+                        children=[
+                            dcc.Markdown(
+                                className="text-sm text-gray-800",
+                                children=[
+                                    reply
+                                ],
+                            ),
+                            html.Span(
+                                className="text-xs text-gray-500 mt-1 block",
+                                children=[datetime.now().strftime("%I:%M %p")],
+                            ),
+                        ],
+                    )
+                ],
+            ),
+        )
+    except requests.exceptions.RequestException as e:
+        chat_history.append(
+            html.Div(
+                className="flex mb-3",
+                children=[
+                    html.Div(
+                        className="bg-red-100 rounded-lg py-2 px-3 max-w-[80%]",
+                        children=[
+                            html.P(
+                                className="text-sm text-red-800",
+                                children=[
+                                    "Error al comunicarse con el servidor."
+                                ],
+                            ),
+                            html.Span(
+                                className="text-xs text-red-500 mt-1 block",
+                                children=[datetime.now().strftime("%I:%M %p")],
+                            ),
+                        ],
+                    )
+                ],
+            ),
+        )
+    
+    return chat_history
 
 if __name__ == "__main__":
     app.run(debug=True)
