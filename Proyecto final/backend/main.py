@@ -11,12 +11,6 @@ from datetime import date
 from prophet.plot import plot_plotly, plot_components_plotly
 from google import genai
 
-# def load_data():
-#     df = pd.read_csv("carpetas.csv")
-#     df["datetime"] = pd.to_datetime(df["datetime"], format="mixed")
-#     df = df.dropna()
-#     return df
-
 def get_conn():
     conn = snowflake.connector.connect(
         user=USER,
@@ -121,10 +115,6 @@ PASSWORD = os.getenv("SNOWFLAKE_PASSWORD")
 ACCOUNT = os.getenv("SNOWFLAKE_ACCOUNT")
 DATABASE = os.getenv("SNOWFLAKE_DATABASE")
 SCHEMA = os.getenv("SNOWFLAKE_SCHEMA")
-# df = load_data()
-# alcaldías = df["alcaldía"].drop_duplicates().sort_values().tolist()
-# gravedades = df["gravedad"].unique().tolist()
-# last_date = df["datetime"].max()
 
 class CoordinatesModel(BaseModel):
     hora: int
