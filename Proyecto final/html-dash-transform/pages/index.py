@@ -250,11 +250,11 @@ html.Div(
             ],
         ),
         html.Div(
-            className="fixed bottom-6 right-6 z-50 hidden",
+            className="fixed bottom-6 right-6 z-50",
             id="chatbot-window",
             children=[
                 html.Div(
-                    className="bg-white rounded-lg shadow-xl w-80 overflow-hidden",
+                    className="bg-white rounded-lg shadow-xl w-96 overflow-hidden",
                     children=[
                         html.Div(
                             className="bg-indigo-600 text-white px-4 py-3 flex justify-between items-center",
@@ -366,7 +366,7 @@ html.Div(
                                     className="flex items-center",
                                     children=[
                                         html.Button(
-                                            className="bg-indigo-600 text-white rounded-r-lg px-4 py-2 hover:bg-indigo-700 transition-colors",
+                                            className="bg-indigo-600 text-white px-4 py-2 hover:bg-indigo-700 transition-colors",
                                             children=[
                                                 dash_svg.Svg(
                                                     className="h-5 w-5",
@@ -380,7 +380,45 @@ html.Div(
                                                     ],
                                                 )
                                             ],
-                                        )
+                                        ),
+                                        html.Button(
+                                            className="bg-green-600 text-white rounded-r-lg px-4 py-2 hover:bg-green-700 transition-colors ml-1",
+                                            children=[
+                                                dash_svg.Svg(
+                                                    className="h-5 w-5",
+                                                    fill="none",
+                                                    stroke="currentColor",
+                                                    viewBox="0 0 24 24",
+                                                    xmlns="http://www.w3.org/2000/svg",
+                                                    children=[
+                                                        dash_svg.Path(
+                                                            d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7c-2 0-3 1-3 3z",
+                                                            strokeLinecap="round",
+                                                            strokeLinejoin="round",
+                                                            strokeWidth="2",
+                                                        ),
+                                                        dash_svg.Path(
+                                                            d="M4 7h16",
+                                                            strokeLinecap="round",
+                                                            strokeLinejoin="round",
+                                                            strokeWidth="2",
+                                                        ),
+                                                        dash_svg.Path(
+                                                            d="M4 11h16",
+                                                            strokeLinecap="round",
+                                                            strokeLinejoin="round",
+                                                            strokeWidth="2",
+                                                        ),
+                                                        dash_svg.Path(
+                                                            d="M4 15h16",
+                                                            strokeLinecap="round",
+                                                            strokeLinejoin="round",
+                                                            strokeWidth="2",
+                                                        ),
+                                                    ],
+                                                )
+                                            ],
+                                        ),
                                     ],
                                 )
                             ],

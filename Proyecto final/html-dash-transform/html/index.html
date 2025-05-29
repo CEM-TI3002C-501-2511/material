@@ -196,11 +196,9 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
             </svg>
         </button>
-    </div>
-
-    <!-- Ventana del ChatBot (inicialmente oculta) -->
-    <div id="chatbot-window" class="fixed bottom-6 right-6 z-50 hidden">
-        <div class="bg-white rounded-lg shadow-xl w-80 overflow-hidden">
+    </div>    <!-- Ventana del ChatBot (inicialmente oculta) -->
+    <div id="chatbot-window" class="fixed bottom-6 right-6 z-50">
+        <div class="bg-white rounded-lg shadow-xl w-96 overflow-hidden">
             <!-- Cabecera del chat -->
             <div class="bg-indigo-600 text-white px-4 py-3 flex justify-between items-center">
                 <div class="flex items-center">
@@ -241,19 +239,26 @@
                 <!-- Área para mostrar mensajes adicionales -->
                 <div id="chat-messages"></div>
             </div>
-            
-            <!-- Área de entrada de texto -->
+              <!-- Área de entrada de texto -->
             <div class="border-t border-gray-200 px-4 py-3 bg-white">
                 <div class="flex items-center">
                     <input type="text" id="chat-input" placeholder="Escribe tu mensaje aquí..." class="flex-grow px-3 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
-                    <button onclick="sendMessage()" class="bg-indigo-600 text-white rounded-r-lg px-4 py-2 hover:bg-indigo-700 transition-colors">
+                    <button onclick="sendMessage()" class="bg-indigo-600 text-white px-4 py-2 hover:bg-indigo-700 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                         </svg>
+                    </button>                    <button onclick="sendPredefinedMessage()" class="bg-green-600 text-white rounded-r-lg px-4 py-2 hover:bg-green-700 transition-colors ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7c-2 0-3 1-3 3z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 11h16" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15h16" />
+                        </svg>
                     </button>
-                </div>
+                </div>            
             </div>
         </div>
     </div>
+    
 </body>
 </html>
