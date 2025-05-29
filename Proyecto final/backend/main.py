@@ -11,11 +11,11 @@ from datetime import date
 from prophet.plot import plot_plotly, plot_components_plotly
 from google import genai
 
-def load_data():
-    df = pd.read_csv("carpetas.csv")
-    df["datetime"] = pd.to_datetime(df["datetime"], format="mixed")
-    df = df.dropna()
-    return df
+# def load_data():
+#     df = pd.read_csv("carpetas.csv")
+#     df["datetime"] = pd.to_datetime(df["datetime"], format="mixed")
+#     df = df.dropna()
+#     return df
 
 def get_conn():
     conn = snowflake.connector.connect(
@@ -121,10 +121,10 @@ PASSWORD = os.getenv("SNOWFLAKE_PASSWORD")
 ACCOUNT = os.getenv("SNOWFLAKE_ACCOUNT")
 DATABASE = os.getenv("SNOWFLAKE_DATABASE")
 SCHEMA = os.getenv("SNOWFLAKE_SCHEMA")
-df = load_data()
-alcaldías = df["alcaldía"].drop_duplicates().sort_values().tolist()
-gravedades = df["gravedad"].unique().tolist()
-last_date = df["datetime"].max()
+# df = load_data()
+# alcaldías = df["alcaldía"].drop_duplicates().sort_values().tolist()
+# gravedades = df["gravedad"].unique().tolist()
+# last_date = df["datetime"].max()
 
 class CoordinatesModel(BaseModel):
     hora: int
@@ -144,6 +144,7 @@ class AlcaldiaModel(BaseModel):
     @field_validator("alcaldia", mode="after")
     @classmethod
     def validate_alcaldia(cls, value : str) -> str:
+        alcaldías = get_alcaldías()
         if value not in alcaldías:
             raise ValueError(f"Alcaldia {value} no es válida. Opciones: {", ".join(alcaldías)}")
         return value
@@ -167,7 +168,36 @@ app = FastAPI()
 
 @app.get("/alcaldias")
 def get_alcaldías():
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute("SELECT DISTINCT alcaldia FROM CARPETAS ORDER BY alcaldia")
+    alcaldías = [row[0] for row in cursor.fetchall() if row[0] is not None]
+    cursor.close()
+    conn.close()
     return alcaldías
+
+@app.get("/gravedades")
+def get_gravedades():
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute("SELECT DISTINCT gravedad FROM CARPETAS ORDER BY gravedad")
+    gravedades = [row[0] for row in cursor.fetchall() if row[0] is not None]
+    cursor.close()
+    conn.close()
+    return gravedades
+
+@app.get("/ultima_fecha")
+def get_ultima_fecha():
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute("SELECT MAX(datetime) FROM CARPETAS")
+    last_date = cursor.fetchone()[0]
+    cursor.close()
+    conn.close()
+    if last_date:
+        return {"ultima_fecha": last_date.strftime("%Y-%m-%d")}
+    else:
+        return {"ultima_fecha": None}
 
 @app.post("/prediccion_coordenadas")
 def predict_coordinates(data: CoordinatesModel):
@@ -214,9 +244,13 @@ def predict_coordinates(data: CoordinatesModel):
 def predict_alcaldia(data: AlcaldiaModel):
     resultados = {}
     fecha = pd.to_datetime(data.fecha)
-    days_diff = (fecha - last_date).days
+    última_fecha = pd.to_datetime(get_ultima_fecha()["ultima_fecha"])
+    if última_fecha is None:
+        return {"error": "No hay datos disponibles para realizar la predicción. Por favor, asegúrate de que la base de datos contiene registros."}
+    days_diff = (fecha - última_fecha).days
     if days_diff < 0:
         return {"error": "La fecha debe ser mayor a la última fecha en los datos: {last_date}"}
+    gravedades = get_gravedades()
     for gravedad in gravedades:
         model = load_alcaldia_model(data.alcaldia, gravedad)
         future = model.make_future_dataframe(periods=days_diff, freq="D")

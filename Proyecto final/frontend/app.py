@@ -366,7 +366,7 @@ chatbot_button = html.Div(
             id="chatbot-button",
             children=[
                 html.Button(
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg transition-all hover:scale-105",
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg transition-all hover:scale-105 cursor-pointer",
                     id="open-chatbot",
                     children=[
                         dash_svg.Svg(
@@ -414,7 +414,7 @@ chatbot_window = html.Div(
                                     ],
                                 ),
                                 html.Button(
-                                    className="text-white hover:text-gray-200",
+                                    className="text-white hover:text-gray-200 cursor-pointer",
                                     id="close-chatbot",
                                     children=[
                                         dash_svg.Svg(
@@ -478,7 +478,7 @@ chatbot_window = html.Div(
                                             id="chat-input",
                                         ),
                                         html.Button(
-                                            className="bg-indigo-600 text-white px-4 py-2 hover:bg-indigo-700 transition-colors",
+                                            className="bg-indigo-600 text-white px-4 py-2 hover:bg-indigo-700 transition-colors cursor-pointer",
                                             id = "web-chat-send",
                                             children=[
                                                 dash_svg.Svg(
@@ -495,7 +495,7 @@ chatbot_window = html.Div(
                                             ],
                                         ),
                                         html.Button(
-                                            className="bg-green-600 text-white rounded-r-lg px-4 py-2 hover:bg-green-700 transition-colors ml-1",
+                                            className="bg-green-600 text-white rounded-r-lg px-4 py-2 hover:bg-green-700 transition-colors cursor-pointer",
                                             id = "db-chat-send",
                                             children=[
                                                 dash_svg.Svg(
@@ -582,9 +582,7 @@ def update_active_link(pathname):
     prevent_initial_call=True
 )
 def open_chatbot(n_clicks):
-    if n_clicks:
-        return "fixed bottom-6 right-6 z-50 hidden", "fixed bottom-6 right-6 z-50"
-    return "fixed bottom-6 right-6 z-50", "fixed bottom-6 right-6 z-50 hidden"
+    return "fixed bottom-6 right-6 z-50 hidden", "fixed bottom-6 right-6 z-50"
 
 @callback(
     Output("chatbot-button", "className", allow_duplicate=True),
@@ -593,10 +591,7 @@ def open_chatbot(n_clicks):
     prevent_initial_call=True
 )
 def close_chatbot(n_clicks):
-    if n_clicks:
-        return "fixed bottom-6 right-6 z-50", "fixed bottom-6 right-6 z-50 hidden"
-    return "fixed bottom-6 right-6 z-50 hidden", "fixed bottom-6 right-6 z-50"
-
+    return "fixed bottom-6 right-6 z-50", "fixed bottom-6 right-6 z-50 hidden"
 
 @callback(
     Output("chat-history", "children", allow_duplicate=True),

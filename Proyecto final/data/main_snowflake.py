@@ -108,11 +108,11 @@ def update_snowflake():
         
         df = df.dropna()
         
-        df["datetime"] = pd.to_datetime(df["fecha"].str.split("T").str[0] + " " + df["hora"].apply(lambda x: x if len(x) == 8 else x[:8]), format="mixed")
+        df["datetime"] = pd.to_datetime(df["fecha"].str.split("T").str[0] + " " + df["hora"].apply(lambda x: x if len(x) == 8 else x[:8]), format="mixed").dt.strftime("%Y-%m-%d %H:%M:%S")
         
         df = df.drop(columns=["fecha", "hora"])
 
-        df["inicio"] = df["inicio"].str.split("T").str[0]
+        df["inicio"] = pd.to_datetime(df["inicio"].str.split("T").str[0]).dt.strftime("%Y-%m-%d")
 
         columnas = [x for x in df.columns if df[x].dtype == "object"]
         for col in columnas:
@@ -120,7 +120,7 @@ def update_snowflake():
             
         df['gravedad'] = df['categoria'].apply(clasificar_gravedad)
         df.columns = map(lambda x: str(x).upper(), df.columns)
-        # df = df.set_index("CARPETA")
+        # df = df.set_index("ID")
         conn = get_conn()
         # cur = conn.cursor()
         try:
